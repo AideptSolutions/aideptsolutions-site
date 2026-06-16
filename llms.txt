@@ -1,0 +1,24 @@
+# AiDept Solutions
+
+> AiDept Solutions is an AI consulting firm that helps small and mid-sized
+> businesses (roughly 10–100 employees) adopt AI workflows that actually stick.
+> Vendor-neutral and outcomes-focused: readiness audits, automation builds,
+> employee training, and tool selection.
+
+## What AiDept Solutions does
+- AI readiness assessments for owners and COOs.
+- Building practical automation and workflow integrations into existing operations.
+- Employee AI training so adoption sticks after the engagement ends.
+- Vendor-neutral AI tool selection (not tied to any single vendor).
+
+## Who it's for
+- Small and mid-sized businesses, typically 10–100 employees, in the United States.
+
+## Engagement
+- Offers a free preliminary consultation.
+
+## Primary page
+- Home: https://www.aideptsolutions.com/
+
+## Contact
+- Email: AJ@aideptsolutions.com
