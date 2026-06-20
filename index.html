@@ -742,6 +742,98 @@
     font-weight: 600;
     margin-top: 16px;
   }
+
+  /* SUCCESS MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(10,22,40,0.55);
+    backdrop-filter: blur(4px);
+    animation: modalFade 0.2s ease;
+  }
+  .modal-overlay[hidden] { display: none; }
+
+  .modal-card {
+    position: relative;
+    background: #fff;
+    border-radius: 18px;
+    padding: 44px 36px 36px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(10,22,40,0.30);
+    animation: modalPop 0.25s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .modal-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(26,86,219,0.10), rgba(6,182,212,0.10));
+    box-shadow: inset 0 0 0 1px rgba(26,86,219,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.4px;
+    margin-bottom: 8px;
+  }
+
+  .modal-text {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .modal-btn {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 12px 34px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .modal-btn:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: var(--text-light);
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  .modal-close:hover { background: var(--bg-mid); color: var(--text); }
+
+  @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes modalPop {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+  }
 </style>
 </head>
 <body>
@@ -1055,7 +1147,6 @@
       <div class="contact-form">
         <div class="form-header">Prefer a form? Use this one.</div>
         <div class="form-sub">We'll respond from AJ@aideptsolutions.com within one business day.</div>
-        <div data-fs-success class="success-msg" style="display:none;">✓ Message received. We'll be in touch within one business day.</div>
         <div data-fs-error style="color:#dc2626;font-size:13px;margin-bottom:12px;"></div>
         <form id="contactForm">
           <div class="form-row">
@@ -1102,6 +1193,21 @@
   </div>
 </section>
 
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successModalTitle" hidden>
+  <div class="modal-card">
+    <button type="button" class="modal-close" id="successModalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal-icon">
+      <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="url(#ic-modal-check)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="ic-modal-check" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse"><stop stop-color="#1a56db"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>
+    </div>
+    <h3 id="successModalTitle" class="modal-title">Message sent</h3>
+    <p class="modal-text">Someone will be in touch within 24 hours.</p>
+    <button type="button" class="modal-btn" id="successModalDone">Close</button>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <p><strong>AiDept Solutions</strong> &nbsp;·&nbsp; We build &amp; operate web tools, products and services, engineered for SEO, AEO &amp; ROAS<br>
@@ -1109,9 +1215,59 @@
 </footer>
 
 <script>
-  // Formspree Ajax init
-  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#contactForm', formId: 'xykankvd' });
+  // Contact form -> Formspree, with a confirmation modal on success
+  (function () {
+    const form = document.getElementById('contactForm');
+    const modal = document.getElementById('successModal');
+    const errBox = document.querySelector('[data-fs-error]');
+    const submitBtn = form.querySelector('[data-fs-submit-btn]');
+    const closeBtn = document.getElementById('successModalClose');
+    const doneBtn = document.getElementById('successModalDone');
+    const ENDPOINT = 'https://formspree.io/f/xykankvd';
+
+    function openModal() {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      doneBtn.focus();
+    }
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    }
+    closeBtn.addEventListener('click', closeModal);
+    doneBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      errBox.textContent = '';
+      const original = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        if (res.ok) {
+          form.reset();
+          openModal();
+        } else {
+          const data = await res.json().catch(() => ({}));
+          errBox.textContent = (data.errors && data.errors.map(x => x.message).join(', ')) ||
+            'Something went wrong. Please email AJ@aideptsolutions.com.';
+        }
+      } catch (err) {
+        errBox.textContent = 'Network error. Please email AJ@aideptsolutions.com.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = original;
+      }
+    });
+  })();
 
   // Smooth scroll for nav links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -1124,6 +1280,5 @@
     });
   });
 </script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
