@@ -252,6 +252,7 @@
   .ledger { border-top: 1px solid var(--ink); }
   .row { display: grid; grid-template-columns: 80px 1fr 300px; gap: 40px; padding: 36px 0; border-bottom: 1px solid var(--rule); }
   .row-n { padding-top: 0; }
+  .row-tag { display: inline-block; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); padding-top: 8px; line-height: 1.3; }
   .app-icon { display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 22%; background: var(--tile); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 1px 2px rgba(10,22,40,0.18), 0 6px 14px rgba(10,22,40,0.10); }
   .app-icon svg { width: 48px; height: 48px; display: block; }
   .app-icon svg * { stroke-width: 2.1; }
@@ -342,6 +343,7 @@
       <a href="#work">Work</a>
       <a href="#services">What we do</a>
       <a href="#tools">Tools</a>
+      <a href="#dev">In development</a>
       <a href="#process">Process</a>
       <a href="#questions">Questions</a>
     </div>
@@ -545,10 +547,85 @@
   </div>
 </section>
 
+<section id="dev">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">03 / In development</div>
+      <div>
+        <h2>Built, or being built, and not yet launched.</h2>
+        <p class="lead">Projects with real code behind them that have not shipped. Some are waiting on a launch gate, some are still being built. Nothing here is live for the public, and nothing here is for sale yet.</p>
+      </div>
+    </div>
+    <div class="ledger">
+      <article class="row">
+        <div class="row-n"><span class="row-tag">Game</span></div>
+        <div class="row-body">
+          <h3>CRE Tycoon</h3>
+          <p>A multiplayer top-down RPG where you play a commercial real estate investor. Walk the overworld, negotiate with vendors on dice rolls, acquire properties, and climb a live leaderboard ranked by portfolio value. All money math, dice, and valuations run on the server, so nothing can be faked from the client.</p>
+          <p>The next layer is user behavior and decision mapping. Every bid, haggle, hold, and walk-away is a decision under uncertainty, and the game records them. Over time that play builds a decision profile across risk calibration, loss aversion, patience, and negotiation habits, a map of how a person actually decides rather than how they say they decide.</p>
+        </div>
+        <ul class="row-facts">
+          <li><span>Stage</span>Playable build, in active development</li>
+          <li><span>Stack</span>React, Phaser, Node, Express, Prisma, PostgreSQL, Socket.io</li>
+          <li><span>Next</span>Balance pass, hosted deployment, then the decision-mapping layer</li>
+        </ul>
+      </article>
+      <article class="row">
+        <div class="row-n"><span class="row-tag">Service</span></div>
+        <div class="row-body">
+          <h3>TheLeasePro</h3>
+          <p>Flat-fee lease strategy for commercial tenants, with no commission and no side of the table. Tiered engagements booked and paid online, backed by a glossary and articles written for the questions tenants actually search.</p>
+        </div>
+        <ul class="row-facts">
+          <li><span>Stage</span>Site built, pre-launch</li>
+          <li><span>Stack</span>Next.js, Supabase, Stripe, Resend, Cal.com</li>
+          <li><span>Next</span>Compliance review, then launch</li>
+        </ul>
+      </article>
+      <article class="row">
+        <div class="row-n"><span class="row-tag">Platform</span></div>
+        <div class="row-body">
+          <h3><a href="https://ovationchain.com" target="_blank" rel="noopener">OvationChain</a></h3>
+          <p>Group celebration boards for birthdays, work anniversaries, and farewells. Contributors add messages, and the guest of honor is placed into AI face-swap scenes. Paid boards with a free watermarked tier, delivered by email.</p>
+        </div>
+        <ul class="row-facts">
+          <li><span>Stage</span>Deployed, holding for policy review before the first real users</li>
+          <li><span>Stack</span>Next.js, Supabase, Prisma, AWS S3, Stripe, Akool, Inngest</li>
+          <li><span>Next</span>Legal review and the end-to-end launch checklist</li>
+        </ul>
+      </article>
+      <article class="row">
+        <div class="row-n"><span class="row-tag">Monitor</span></div>
+        <div class="row-body">
+          <h3>Taiwan early-warning indicator</h3>
+          <p>An early-warning monitor for cross-strait escalation risk. It baselines public market, physical, and information signals against their own recent history and fires a graded alert only when several independent domains agree at once. Public data only.</p>
+        </div>
+        <ul class="row-facts">
+          <li><span>Stage</span>Signal engine and alert ladder built, backtest pending</li>
+          <li><span>Stack</span>Python, SQLite, public OSINT and market feeds</li>
+          <li><span>Guardrails</span>Recommend-only by default, no order sent without human approval</li>
+        </ul>
+      </article>
+      <article class="row">
+        <div class="row-n"><span class="row-tag">Trading tool</span></div>
+        <div class="row-body">
+          <h3>ES orderflow bot</h3>
+          <p>Ingests CME ES futures orderflow, tape and order book, computes microstructure analytics, and ranks trading levels on a live dashboard with alerts. Whether a level works is answered by a replay harness, never asserted.</p>
+        </div>
+        <ul class="row-facts">
+          <li><span>Stage</span>Engine, dashboard, and replay harness built; live feed needs a data key</li>
+          <li><span>Stack</span>Python, FastAPI, Databento, lightweight-charts</li>
+          <li><span>Guardrails</span>Analysis only, no order execution</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section id="services">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-label">03 / What we do</div>
+      <div class="sec-label">04 / What we do</div>
       <div>
         <h2>Design, build, operate.</h2>
         <p class="lead">Three disciplines, one studio. Every product goes through all three, and we stay with it after launch.</p>
@@ -592,7 +669,7 @@
 <section id="process">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-label">04 / Process</div>
+      <div class="sec-label">05 / Process</div>
       <div>
         <h2>How a product gets made here.</h2>
         <p class="lead">Four phases, from a question to a product that runs on its own. Each has a gate, so nothing ships before it has earned it.</p>
@@ -610,7 +687,7 @@
 <section id="questions">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-label">05 / Questions</div>
+      <div class="sec-label">06 / Questions</div>
       <div><h2>Common questions, direct answers.</h2></div>
     </div>
     <div class="faq">
@@ -641,7 +718,7 @@
 <section id="contact">
   <div class="wrap contact-grid">
     <div>
-      <div class="sec-label" style="padding-top:0;margin-bottom:20px">06 / Contact</div>
+      <div class="sec-label" style="padding-top:0;margin-bottom:20px">07 / Contact</div>
       <h2>Get in touch.</h2>
       <p class="lead" style="margin-top:22px">Partnerships, questions about a product, press, or a project you think fits what we build. Email is the fastest way to reach us.</p>
       <a class="email-big" href="mailto:AJ@aideptsolutions.com">AJ@aideptsolutions.com</a>
