@@ -254,8 +254,9 @@
   .row-n { padding-top: 0; }
   .row-tag { display: inline-block; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); padding-top: 8px; line-height: 1.3; }
   .app-icon { display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 22%; background: var(--tile); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 1px 2px rgba(10,22,40,0.18), 0 6px 14px rgba(10,22,40,0.10); }
-  .app-icon svg { width: 48px; height: 48px; display: block; }
-  .app-icon svg * { stroke-width: 2.1; }
+  .app-icon { overflow: hidden; }
+  .app-icon img { width: 100%; height: 100%; display: block; }
+  .row-n .row-tag + .app-icon, .row-n .app-icon + .row-tag { margin-top: 8px; }
   .row-body h3 { font-size: 26px; }
   .row-body p { margin-top: 12px; color: var(--ink-2); font-size: 16px; max-width: 58ch; }
   .row-facts { list-style: none; border-top: 1px solid var(--rule); }
@@ -496,7 +497,7 @@
     </div>
     <div class="ledger">
       <article class="row">
-        <div class="row-n"><span class="app-icon" style="--tile:#1f4f8f" role="img" aria-label="Kalshi weather trading bot icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10a3 3 0 0 1 6 0v18.5a7 7 0 1 1-6 0V10Z"/><path d="M16 17v17"/><path d="M23 14h3M23 19h2"/><path d="M25 32l6-6 5 2 7-9"/><path d="M37 19h6v6"/><circle cx="16" cy="35" r="2.5"/></svg></span></div>
+        <div class="row-n"><span class="app-icon"><img src="logos/kalshi-weather-bot.png" width="64" height="64" alt="Kalshi weather trading bot logo" loading="lazy"></span></div>
         <div class="row-body">
           <h3>Kalshi weather trading bot</h3>
           <p>Trades daily high-temperature markets on Kalshi across the 16 settlement stations. A blended forecast engine pulls several weather sources, weights each by its measured error, calibrates uncertainty per station, and prices edge after fees against the live order book.</p>
@@ -508,7 +509,7 @@
         </ul>
       </article>
       <article class="row">
-        <div class="row-n"><span class="app-icon" style="--tile:#0a1628" role="img" aria-label="Stock and options trading system icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 39 11v11c0 9-6 15-15 21-9-6-15-12-15-21V11L24 5Z"/><path d="M15 27l5-6 4 3 7-9"/><path d="M28 15h3v3"/><path d="M15 32v-3M20 32v-5M25 32v-3"/><path d="M12 34h14"/></svg></span></div>
+        <div class="row-n"><span class="app-icon"><img src="logos/stock-options-system.png" width="64" height="64" alt="Stock and options trading system logo" loading="lazy"></span></div>
         <div class="row-body">
           <h3>Stock and options trading system</h3>
           <p>A self-improving system on Interactive Brokers. A deterministic risk governor sits at the top: daily breakers, a portfolio heat cap, earnings blackouts, and a paper-to-live gate that needs both passing criteria and a human switch. A learning module studies the trader's own behavior, improves over time, and flags risky patterns and decisions before they cost money.</p>
@@ -520,7 +521,7 @@
         </ul>
       </article>
       <article class="row">
-        <div class="row-n"><span class="app-icon" style="--tile:#b7791f" role="img" aria-label="Prediction-market behavior monitor icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 24C14 7 34 7 43 24C34 41 14 41 5 24Z"/><circle cx="24" cy="24" r="6"/><path d="M25.5 18.3A3.5 3.5 0 0 1 27.5 21.5"/><circle cx="40" cy="12" r="1.5"/></svg></span></div>
+        <div class="row-n"><span class="app-icon"><img src="logos/prediction-market-monitor.png" width="64" height="64" alt="Prediction-market behavior monitor logo" loading="lazy"></span></div>
         <div class="row-body">
           <h3>Prediction-market behavior monitor</h3>
           <p>Watches the live Polymarket trade firehose and flags behavior worth attention: large bets from brand-new wallets, trades outsized against a market's liquidity, prices far from standing odds, and repeat whales. Every signal is logged and scored against what the market did next, so nothing is claimed that the data cannot back.</p>
@@ -532,7 +533,7 @@
         </ul>
       </article>
       <article class="row">
-        <div class="row-n"><span class="app-icon" style="--tile:#1d6b4a" role="img" aria-label="Kalshi sports betting bot icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(-40 20 22)"><path d="M6 22C13 16 27 16 34 22C27 28 13 28 6 22Z"/><path d="M11 22H29"/><path d="M15 20.5V23.5M20 20.5V23.5M25 20.5V23.5"/></g><g transform="rotate(-40 32 34)"><rect x="26.5" y="31" width="11" height="6" rx="3"/></g><g transform="rotate(-40 38 29)"><rect x="32.5" y="26" width="11" height="6" rx="3"/></g></svg></span></div>
+        <div class="row-n"><span class="app-icon"><img src="logos/kalshi-sports-bot.png" width="64" height="64" alt="Kalshi sports betting bot logo" loading="lazy"></span></div>
         <div class="row-body">
           <h3>Kalshi sports betting bot</h3>
           <p>An NFL player-prop parlay bot for Kalshi, gated by phase. The edge on high-probability legs is being proven on settled markets with public data before any leg selection, paper trading, or live orders. Projections, injuries, Vegas lines, and usage data feed the later phases.</p>
@@ -595,7 +596,7 @@
         </ul>
       </article>
       <article class="row">
-        <div class="row-n"><span class="row-tag">Monitor</span></div>
+        <div class="row-n"><span class="app-icon"><img src="logos/taiwan-warning-indicator.png" width="64" height="64" alt="Taiwan early-warning indicator logo" loading="lazy"></span><span class="row-tag">Monitor</span></div>
         <div class="row-body">
           <h3>Taiwan early-warning indicator</h3>
           <p>An early-warning monitor for cross-strait escalation risk. It baselines public market, physical, and information signals against their own recent history and fires a graded alert only when several independent domains agree at once. Public data only.</p>
@@ -607,7 +608,7 @@
         </ul>
       </article>
       <article class="row">
-        <div class="row-n"><span class="row-tag">Trading tool</span></div>
+        <div class="row-n"><span class="app-icon"><img src="logos/es-orderflow-bot.png" width="64" height="64" alt="ES orderflow bot logo" loading="lazy"></span><span class="row-tag">Trading tool</span></div>
         <div class="row-body">
           <h3>ES orderflow bot</h3>
           <p>Ingests CME ES futures orderflow, tape and order book, computes microstructure analytics, and ranks trading levels on a live dashboard with alerts. Whether a level works is answered by a replay harness, never asserted.</p>
