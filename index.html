@@ -548,10 +548,10 @@
         <div class="row-n"><span class="app-icon"><img src="logos/stock-options-system.png" width="64" height="64" alt="Stock and options trading system logo" loading="lazy"></span></div>
         <div class="row-body">
           <h3>Stock and options trading system</h3>
-          <p>An automated trader on Interactive Brokers, run on the studio's own account. A risk governor sits above every strategy: daily loss breakers, a cap on total open risk, no trading into earnings, and a gate that keeps it in paper mode until both the numbers and a human say go. A learning module studies the account's own trade history and flags the habits that cost money. Revenue is simply what it earns in the account.</p>
+          <p>An automated trader on Interactive Brokers, run on the studio's own account. A risk governor sits above every strategy: daily loss breakers, a cap on total open risk, no trading into earnings, and a paper-to-live gate it had to pass on the numbers and with a human sign-off before the first real order. A learning module studies the account's own trade history and flags the habits that cost money. Revenue is simply what it earns in the account.</p>
         </div>
         <ul class="row-facts">
-          <li><span>Status</span>Built through the live gate, trading paper</li>
+          <li><span>Status</span>Running live</li>
           <li><span>Stack</span>Python, IBKR API, SQLite, Telegram</li>
           <li><span>Guardrails</span>Governor outranks every model, no sizing to goals</li>
         </ul>
