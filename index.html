@@ -307,7 +307,7 @@
   .gal-track { display: flex; height: 100%; transition: transform .35s ease; }
   .gal-slide { flex: 0 0 100%; height: 100%; display: flex; align-items: center; justify-content: center; border: 0; padding: 0; background: none; cursor: zoom-in; }
   .gal-slide:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-  .gal-slide img { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; }
+  .gal-slide img, .gal-slide video { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; }
   .gal-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border: 0; border-radius: 50%; background: rgba(255,255,255,0.92); color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(10,22,40,0.3); }
   .gal-arrow:hover { background: #fff; }
   .gal-arrow svg { width: 16px; height: 16px; }
@@ -320,7 +320,8 @@
   .lightbox { position: fixed; inset: 0; z-index: 50; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(10,22,40,0.94); }
   .lightbox.open { display: flex; }
   .lightbox figure { margin: 0; text-align: center; max-width: 100%; }
-  .lightbox img { max-width: 100%; max-height: calc(100vh - 110px); width: auto; height: auto; display: inline-block; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  .lightbox img, .lightbox video { max-width: 100%; max-height: calc(100vh - 110px); width: auto; height: auto; display: inline-block; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  .lightbox img[hidden], .lightbox video[hidden] { display: none; }
   .lightbox figcaption { color: #fff; margin-top: 14px; font-size: 15px; opacity: 0.85; }
   .lb-btn { position: absolute; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,0.12); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
   .lb-btn:hover { background: rgba(255,255,255,0.24); }
@@ -356,7 +357,7 @@
     .gal-arrow { width: 30px; height: 30px; }
     .lightbox { padding: 12px; }
     .lb-prev, .lb-next { top: auto; bottom: 14px; transform: none; }
-    .lightbox img { max-height: calc(100vh - 150px); }
+    .lightbox img, .lightbox video { max-height: calc(100vh - 150px); }
     .row-facts { grid-column: auto; }
     .tiles { gap: 44px; }
     .offer h3, .step h3 { margin-top: 20px; }
@@ -604,8 +605,7 @@
               <div class="gal-bar"><span>CRE Tycoon preview</span><span>click or tap to expand</span></div>
               <div class="gal-stage">
                 <div class="gal-track">
-            <button class="gal-slide" type="button" data-full="cre/overworld-full.jpg" data-cap="Overworld" aria-label="Expand screenshot: Overworld"><img src="cre/overworld.jpg" alt="Top-down city street with office buildings and the player walking toward a crossing" width="1280" height="646" loading="lazy"></button>
-            <button class="gal-slide" type="button" data-full="cre/downtown-full.jpg" data-cap="Downtown block" aria-label="Expand screenshot: Downtown block"><img src="cre/downtown.jpg" alt="A downtown block with a storefront strip and parked cars" width="1280" height="646" loading="lazy"></button>
+            <button class="gal-slide" type="button" data-video="cre/gameplay-full.mp4" data-cap="Walking the overworld" aria-label="Expand video: Walking the overworld"><video autoplay muted loop playsinline preload="metadata" poster="cre/overworld.jpg" width="1280" height="646" aria-label="Looping gameplay clip of the player walking the overworld"><source src="cre/gameplay-1280.webm" type="video/webm"><source src="cre/gameplay-1280.mp4" type="video/mp4"></video></button>
             <button class="gal-slide" type="button" data-full="cre/investor-full.jpg" data-cap="Meeting an investor" aria-label="Expand screenshot: Meeting an investor"><img src="cre/investor.jpg" alt="Dialog with a family office principal offering to place capital with the player" width="996" height="682" loading="lazy"></button>
             <button class="gal-slide" type="button" data-full="cre/owners-desk-full.jpg" data-cap="The owner's desk" aria-label="Expand screenshot: The owner's desk"><img src="cre/owners-desk.jpg" alt="Offer screen for a Class B+ retail building with negotiate, buy, and syndicate options" width="841" height="757" loading="lazy"></button>
             <button class="gal-slide" type="button" data-full="cre/architect-full.jpg" data-cap="Encounter vendors in the &quot;wild&quot;" aria-label="Expand screenshot: Encounter vendors in the wild"><img src="cre/architect.jpg" alt="Dialog with an architect vendor offering design services" width="1280" height="646" loading="lazy"></button>
@@ -616,7 +616,7 @@
                 <button class="gal-arrow gal-prev" type="button" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
                 <button class="gal-arrow gal-next" type="button" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
               </div>
-              <div class="gal-foot"><span class="gal-cap">Overworld</span><div class="gal-dots" aria-label="Go to screenshot"></div></div>
+              <div class="gal-foot"><span class="gal-cap">Walking the overworld</span><div class="gal-dots" aria-label="Go to screenshot"></div></div>
             </div>
           </div>
         </div>
@@ -827,7 +827,7 @@
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded screenshot">
   <button class="lb-btn lb-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <button class="lb-btn lb-prev" type="button" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <figure><img id="lbImg" alt=""><video id="lbVid" muted loop playsinline preload="none" hidden></video><figcaption id="lbCap"></figcaption></figure>
   <button class="lb-btn lb-next" type="button" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
 </div>
 
@@ -837,7 +837,7 @@
   if (!g || !lb) return;
   var track = g.querySelector('.gal-track'), slides = [].slice.call(g.querySelectorAll('.gal-slide'));
   var cap = g.querySelector('.gal-cap'), dots = g.querySelector('.gal-dots');
-  var lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap'), i = 0;
+  var lbImg = document.getElementById('lbImg'), lbVid = document.getElementById('lbVid'), lbCap = document.getElementById('lbCap'), i = 0;
   slides.forEach(function(s, k){
     var d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', 'Screenshot ' + (k + 1));
     d.addEventListener('click', function(){ go(k); }); dots.appendChild(d);
@@ -851,12 +851,21 @@
     if (lb.classList.contains('open')) show();
   }
   function show(){
-    lbImg.src = slides[i].getAttribute('data-full');
-    lbImg.alt = slides[i].querySelector('img').alt;
+    var vid = slides[i].getAttribute('data-video');
     lbCap.textContent = slides[i].getAttribute('data-cap');
+    if (vid) {
+      lbImg.removeAttribute('src'); lbImg.hidden = true;
+      if (lbVid.getAttribute('src') !== vid) lbVid.src = vid;
+      lbVid.hidden = false; lbVid.play().catch(function(){});
+    } else {
+      lbVid.pause(); lbVid.hidden = true;
+      lbImg.src = slides[i].getAttribute('data-full');
+      lbImg.alt = slides[i].querySelector('img').alt;
+      lbImg.hidden = false;
+    }
   }
   function open(){ show(); lb.classList.add('open'); document.body.classList.add('lb-locked'); lb.querySelector('.lb-close').focus(); }
-  function close(){ lb.classList.remove('open'); document.body.classList.remove('lb-locked'); lbImg.removeAttribute('src'); slides[i].focus(); }
+  function close(){ lb.classList.remove('open'); document.body.classList.remove('lb-locked'); lbImg.removeAttribute('src'); lbVid.pause(); slides[i].focus(); }
   function swipe(el){
     var x0 = null;
     el.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, { passive: true });
